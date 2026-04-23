@@ -14,7 +14,8 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post('http://localhost:5001/api/auth/login', formData);
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+      const res = await axios.post(`${API_URL}/api/auth/login`, formData);
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('user', JSON.stringify(res.data.user));
       // Force reload to update App.jsx authentication state or navigate

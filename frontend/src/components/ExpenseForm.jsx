@@ -17,7 +17,8 @@ function ExpenseForm({ onAdd }) {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('http://localhost:5001/api/expenses', formData, {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+      const res = await axios.post(`${API_URL}/api/expenses`, formData, {
         headers: { Authorization: `Bearer ${token}` }
       });
       onAdd(res.data);

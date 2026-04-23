@@ -17,7 +17,8 @@ function Dashboard() {
   const fetchExpenses = async () => {
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.get('http://localhost:5001/api/expenses', {
+      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
+      const res = await axios.get(`${API_URL}/api/expenses`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       setExpenses(res.data);
